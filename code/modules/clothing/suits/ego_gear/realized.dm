@@ -11,14 +11,19 @@
 							)
 	/// Type of realized ability, if any
 	var/obj/effect/proc_holder/ability/realized_ability = null
+	/// Set the ego_assimilation ability if the realized EGO is able to assimilate a weapon into a corresponding weapon (example: Gasharpoon armour can turn an ALEPH weapon into Gasharpoon weapon)
+	var/obj/effect/proc_holder/ability/ego_assimilation/assimilation_ability = null
 
 /obj/item/clothing/suit/armor/ego_gear/realization/Initialize()
 	. = ..()
-	if(isnull(realized_ability))
-		return
-	var/obj/effect/proc_holder/ability/AS = new realized_ability
-	var/datum/action/spell_action/ability/item/A = AS.action
-	A.SetItem(src)
+	if(realized_ability)
+		var/obj/effect/proc_holder/ability/AS = new realized_ability
+		var/datum/action/spell_action/ability/item/A = AS.action
+		A.SetItem(src)
+	if(assimilation_ability)
+		var/obj/effect/proc_holder/ability/ego_assimilation/ASSIM = new assimilation_ability
+		var/datum/action/spell_action/ability/item/A2 = ASSIM.action
+		A2.SetItem(src)
 
 /*Armor totals:
 Ability 	230
@@ -679,7 +684,7 @@ This empowered state makes them arc lightning to all nearby foes when taking dam
 	icon_state = "farmwatch"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 40, PALE_DAMAGE = 60)
 	hat = /obj/item/clothing/head/ego_hat/farmwatch_hat
-	realized_ability = /obj/effect/proc_holder/ability/ego_assimilation/farmwatch
+	assimilation_ability = /obj/effect/proc_holder/ability/ego_assimilation/farmwatch
 
 /obj/item/clothing/head/ego_hat/farmwatch_hat
 	name = "farmwatch"
@@ -691,7 +696,7 @@ This empowered state makes them arc lightning to all nearby foes when taking dam
 	desc = "I've always wished to be a bud. Soon to bloom, bearing a scent within."
 	icon_state = "spicebush"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 60)
-	realized_ability = /obj/effect/proc_holder/ability/ego_assimilation/spicebush
+	assimilation_ability = /obj/effect/proc_holder/ability/ego_assimilation/spicebush
 
 /obj/item/clothing/suit/armor/ego_gear/realization/desperation
 	name = "Scorching Desperation"
@@ -699,10 +704,11 @@ This empowered state makes them arc lightning to all nearby foes when taking dam
 	icon_state = "desperation"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 60, PALE_DAMAGE = 60)
 	realized_ability = /obj/effect/proc_holder/ability/overheat
+	assimilation_ability = /obj/effect/proc_holder/ability/ego_assimilation/waxen
 
 /obj/item/clothing/suit/armor/ego_gear/realization/gasharpoon
 	name = "gasharpoon"
 	desc = "We must find the Pallid Whale! Look alive, men! Spring! Roar!"
 	icon_state = "gasharpoon"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 70, BLACK_DAMAGE = 20, PALE_DAMAGE = 80)//230, required for the corresponding weapon abilities
-	realized_ability = /obj/effect/proc_holder/ability/ego_assimilation/gasharpoon
+	assimilation_ability = /obj/effect/proc_holder/ability/ego_assimilation/gasharpoon
