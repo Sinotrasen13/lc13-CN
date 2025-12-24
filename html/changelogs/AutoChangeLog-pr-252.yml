@@ -1,0 +1,4 @@
+author: "Destrok171"
+delete-after: True
+changes:
+  - rscadd: "Added verb to backpack (and backpack subtypes) that allows a player wearing one to hide its worn overlay on them"
