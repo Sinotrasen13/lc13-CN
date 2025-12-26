@@ -1,0 +1,4 @@
+author: "Blimwe0"
+delete-after: True
+changes:
+  - code_imp: "Refactors all manual qliphoth drops into one line of code."
